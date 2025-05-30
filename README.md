@@ -41,3 +41,27 @@
 ]);
 </pre>
 ![image](https://github.com/user-attachments/assets/ad3a35fe-d382-4cfe-aed0-62d34ccb5d7d)
+**3. Product Names and Prices, Sorted by Price (Descending):**
+
+- **Task:** Write an aggregation query to display only the `name` and `price` of each product, sorted by `price` from highest to lowest. Do not include the `_id` field.
+- **Hint:** Use `$project` and `$sort`.
+- **Expected Output:**
+<pre>
+  db.products.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      price: 1
+    }
+  },
+  {
+    $sort: {
+      price: -1
+    }
+  }
+]);
+</pre>
+![image](https://github.com/user-attachments/assets/85d11566-2e24-45ba-a983-a04ae554d75d)
+![image](https://github.com/user-attachments/assets/281f41d1-3cae-426a-a1d8-18453d020836)
+
