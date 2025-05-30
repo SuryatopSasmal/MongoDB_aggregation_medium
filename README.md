@@ -49,19 +49,30 @@
 <pre>
   db.products.aggregate([
   {
-    $project: {
-      _id: 0,
-      name: 1,
-      price: 1
+    $match: {
+      date_added: {
+        $gte: new Date("2023-02-01T00:00:00Z"),
+        $lt: new Date("2023-03-01T00:00:00Z")
+      }
     }
   },
   {
-    $sort: {
-      price: -1
+    $project: {
+      _id: 0,
+      name: 1,
+      category: 1,
+      date_added: {
+        $dateToString: {
+          format: "%Y-%m-%d",
+          date: "$date_added"
+        }
+      }
     }
   }
 ]);
+
 </pre>
-![image](https://github.com/user-attachments/assets/85d11566-2e24-45ba-a983-a04ae554d75d)
-![image](https://github.com/user-attachments/assets/281f41d1-3cae-426a-a1d8-18453d020836)
+
+![image](https://github.com/user-attachments/assets/ce02e325-5a15-4ffd-b9b4-f5d0049ba3b7)
+
 
